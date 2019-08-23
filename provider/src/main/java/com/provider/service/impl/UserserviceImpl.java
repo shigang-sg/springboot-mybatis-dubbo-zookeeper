@@ -102,6 +102,7 @@ public class UserserviceImpl implements UserService {
             logger.info("UserImmpl.updateUser() : 从缓存中删除user >> " + operations.get(key));
             redisTemplate.delete(key);
         }
+        
         return ret;
     }
 }
