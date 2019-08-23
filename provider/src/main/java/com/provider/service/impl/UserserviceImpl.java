@@ -4,10 +4,14 @@ import com.alibaba.dubbo.config.annotation.Service;
 import com.common.domain.User;
 import com.common.service.UserService;
 import com.provider.mapper.UserMapper;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -25,6 +29,7 @@ public class UserserviceImpl implements UserService {
 
     @Autowired
     private RedisTemplate redisTemplate;
+
 
     @Autowired
     public UserMapper userMapper;
