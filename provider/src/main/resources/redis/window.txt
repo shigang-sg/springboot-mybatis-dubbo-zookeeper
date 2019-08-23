@@ -1,0 +1,14 @@
+--安装:
+D:\Java\Redis3\redis-server.exe --service-install redis.windows.conf --loglevel verbose
+
+--启动服务:
+D:\Java\Redis3\redis-server.exe  --service-start
+
+--》关闭服务:
+D:\Java\Redis3\redis-server.exe  --service-stop
+
+-->启动客户端:
+D:\Java\Redis3\redis-cli.exe -h 127.0.0.1 -p 6379
+
+-->获取:
+keys *
