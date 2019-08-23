@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @RestController
 public class UserController {
@@ -21,14 +22,21 @@ public class UserController {
     @Reference(version = "1.0.0")
     private UserService userService;
 
-    @GetMapping("getUser")
-    public User user() {
-        return userService.getUser();
+    //http://localhost:8089/getAll
+    @GetMapping("getAll")
+    private List<User> getAll(User user) {
+        return userService.getAll(user);
     }
 
+    //http://localhost:8089/getUser?id=1
+    @GetMapping("getUser")
+    private User getUser(User user) {
+        return userService.getUser(user);
+    }
+
+    //http://localhost:8089/getUserById?id=3
     @GetMapping("getUserById")
-    public User getUserById() {
-        int id = 3;
+    public User getUserById(Integer id) {
         return userService.getUserById(id);
     }
 
@@ -39,7 +47,6 @@ public class UserController {
         user.setAge(12);
         user.setSex("女");
         int i = userService.saveUser(user);
-        System.out.println("是否保存成功？-------------" + i);
     }
 
     @GetMapping("updateUser")
@@ -50,13 +57,11 @@ public class UserController {
         user.setAge(13);
         user.setSex("男");
         int i = userService.updateUser(user);
-        System.out.println("是否保存成功？-------------" + i);
     }
 
     @GetMapping("deleteUser")
     public void deleteUser() {
         int id = 3;
         int i = userService.deleteUser(id);
-        System.out.println("是否保存成功？-------------" + i);
     }
 }

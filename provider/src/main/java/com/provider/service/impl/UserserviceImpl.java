@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -23,13 +24,19 @@ public class UserserviceImpl implements UserService {
     private final Logger logger = Logger.getLogger(UserserviceImpl.class);
 
     @Autowired
-    private RedisTemplate<String, User> redisTemplate;
+    private RedisTemplate redisTemplate;
 
     @Autowired
     public UserMapper userMapper;
 
-    public User getUser() {
-        return userMapper.getUser(1);
+    @Override
+    public List<User> getAll(User user) {
+        return userMapper.getAll(user);
+    }
+
+    @Override
+    public User getUser(User user) {
+        return userMapper.getUser(user.getId());
     }
 
     /**
@@ -102,7 +109,7 @@ public class UserserviceImpl implements UserService {
             logger.info("UserImmpl.updateUser() : 从缓存中删除user >> " + operations.get(key));
             redisTemplate.delete(key);
         }
-        
+
         return ret;
     }
 }

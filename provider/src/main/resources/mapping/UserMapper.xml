@@ -10,6 +10,11 @@
     <sql id="Base_Column_List">
         id, name, age, sex
     </sql>
+    <select id="getAll" resultMap="BaseResultMap" parameterType="com.common.domain.User">
+        select
+        <include refid="Base_Column_List"/>
+        from u_user t
+    </select>
     <select id="getUser" resultMap="BaseResultMap" parameterType="java.lang.Integer">
         select
         <include refid="Base_Column_List"/>
@@ -56,7 +61,7 @@
         where t.id = #{id,jdbcType=INTEGER}
     </select>
 
-    <insert id="saveUser" parameterType="com.lj.common.domin.User">
+    <insert id="saveUser" parameterType="com.common.domain.User">
         insert into u_user
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
@@ -88,7 +93,7 @@
         </trim>
     </insert>
 
-    <update id="updateUser" parameterType="com.lj.common.domin.User">
+    <update id="updateUser" parameterType="com.common.domain.User">
         UPDATE u_user
         SET
         <if test="name != null">

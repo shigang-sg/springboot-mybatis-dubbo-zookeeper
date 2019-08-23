@@ -23,7 +23,7 @@ public interface UserMapper {
             @Result(column = "age", property = "age"),
             @Result(column = "sex", property = "sex")})*/
 //    @Select("SELECT * FROM u_user")
-    List<User> getAll();
+    List<User> getAll(User user);
 
     //    @Select("SELECT * FROM u_user t WHERE t.id = #{id}")
 //    @ResultMap("userMap")
