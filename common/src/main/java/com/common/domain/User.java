@@ -15,6 +15,7 @@ import java.io.Serializable;
 public class User implements Serializable {
     @ApiModelProperty(value = "主键", name = "id", dataType = "int")
     private int id;
+
     @ApiModelProperty(value = "用户名", name = "name", dataType = "String")
     private String name;
 
